@@ -3,7 +3,13 @@ import streamlit as st
 import pandas as pd
 
 st.write(''' # Predicción del Precio de la Gasolina con Streamlit ''')
-st.image("bomba-de-gasolina.png", caption="Precio de gasolina regular.")
+
+# Use columns to center the image
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    st.image("bomba-de-gasolina.png", caption="Precio de gasolina regular.")
+
 
 st.header('Factores evaluados')
 
