@@ -3,13 +3,13 @@ import streamlit as st
 import pandas as pd
 
 st.write(''' # Predicción del Precio de la Gasolina con Streamlit ''')
-st.image("gas.jpeg", caption="Precio de gasolina.")
+st.image("bomba-de-gasolina.png", caption="Precio de gasolina regular.")
 
-st.header('Datos de evaluación')
+st.header('Factores evaluados')
 
 def user_input_features():
   # Entrada
-  año = st.number_input('año (2017 - 2025 ):',  min_value=2017, max_value=2025, value = 2023, step = 1)
+  año = st.number_input('año (2017 - 2030 ):',  min_value=2017, max_value=2030, value = 2030, step = 1)
   estados = [
     "Aguascalientes",
     "Baja California",
@@ -45,7 +45,14 @@ def user_input_features():
     "Zacatecas"
 ]
   entidad_name = st.selectbox("Selecciona un estado", estados)
-  mes_num = st.number_input('Mes (1 - 12 donde enero =1 ... diciembre=12):', min_value=1, max_value=12, value = 1, step = 1)
+  meses = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+]
+mes_seleccionado = st.selectbox("Selecciona el mes:", meses)
+mes_num = meses.index(mes_seleccionado) + 1
+
+  #mes_num = st.number_input('Mes (1 - 12 donde enero =1 ... diciembre=12):', min_value=1, max_value=12, value = 1, step = 1)
 
   # Create a mapping from state names to numerical values
   estado_mapping = {state: i for i, state in enumerate(estados)}
@@ -75,5 +82,5 @@ LR.fit(X_train,y_train)
 b1 = LR.coef_
 b0 = LR.intercept_
 prediccion = b0 + b1[0]*df.año + b1[1]*df.mes_num + b1[2]*df.entidad_num
-st.subheader('Cálculo de precio')
+st.subheader('Cálculo del precio de la gasolina regular')
 st.write('Precio estimado ', prediccion)
