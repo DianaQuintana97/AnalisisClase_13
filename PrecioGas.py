@@ -49,8 +49,8 @@ def user_input_features():
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 ]
-mes_seleccionado = st.selectbox("Selecciona el mes:", meses)
-mes_num = meses.index(mes_seleccionado) + 1
+  mes_seleccionado = st.selectbox("Selecciona el mes:", meses)
+  mes_num = meses.index(mes_seleccionado) + 1
 
   #mes_num = st.number_input('Mes (1 - 12 donde enero =1 ... diciembre=12):', min_value=1, max_value=12, value = 1, step = 1)
 
